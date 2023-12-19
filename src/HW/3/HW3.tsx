@@ -16,11 +16,11 @@ export const HW3 = () => {
   ]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setCurrentText(event.currentTarget.value.trim());
+    setCurrentText(event.currentTarget.value);
   };
 
   const handleSave = () => {
-    setTexts([...texts, currentText])
+    setTexts([...texts, currentText.trim()])
     setCurrentText("");
   };
 
