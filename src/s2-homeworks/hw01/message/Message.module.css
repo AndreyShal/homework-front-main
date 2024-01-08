@@ -1,0 +1,39 @@
+.message {
+    width: 40%;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+.imageAndText {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.imageAndText img {
+    width: 30px;
+    height: 30px;
+}
+
+.text {
+
+}
+
+.text:after {
+
+}
+
+.name {
+
+}
+
+.messageText {
+    white-space: normal;
+}
+
+.time {
+    display: flex;
+    justify-content: flex-end;
+}
