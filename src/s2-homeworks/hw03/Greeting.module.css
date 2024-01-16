@@ -27,6 +27,13 @@
 }
 
 .errorInput {
+    outline: none;
+    display: flex;
+    width: 372px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
     border: 1px solid red;
 }
 
