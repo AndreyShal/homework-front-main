@@ -1,16 +1,40 @@
 .button {
+    outline: none;
+    display: inline-flex;
+    padding: 5px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 3px;
+    background: none;
+    border: 1px solid transparent;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
 }
 
 .disabled {
+    opacity: 0.5;
+    background: #004D99;
+    color: #002E5C;
 }
 
 .secondary {
+    border: 1px solid #06C;
+    color: #06C;
+
 }
 
 .default {
+    background-color: #06C;
+    color: #FFF;
 }
 
 .red {
+    background-color:  #CC1439;
+    color: #FFF;
 }
 
 .default:hover {
@@ -33,4 +57,7 @@
 }
 
 .button:disabled {
+    opacity: 0.5;
+    background: #004D99;
+    color: #002E5C;
 }
