@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useReducer, useState} from 'react'
 import {homeWorkReducer} from './bll/homeWorkReducer'
 import s from './HW8.module.css'
 import s2 from '../../s1-main/App.module.css'
@@ -17,7 +17,7 @@ export type UserType = {
     age: number
 }
 
-const initialPeople: UserType[] = [
+export const initialPeople: UserType[] = [
     // студенты могут поменять имя/возраст/количество объектов, _id должны быть целочисленные
     {_id: 0, name: 'Кот', age: 3},
     {_id: 1, name: 'Александр', age: 66},
@@ -28,28 +28,22 @@ const initialPeople: UserType[] = [
 ]
 
 const HW8 = () => {
-    const [people, setPeople] = useState<UserType[]>(initialPeople)
+    const [people, dispatchPeople] = useReducer(homeWorkReducer,initialPeople)
     const [currentSort, setCurrentSort] = useState('')
 
     const finalPeople = people.map((u: UserType) => <User key={u._id} u={u}/>)
 
     const sortUp = () => {
-        setPeople(
-            homeWorkReducer(initialPeople, {type: 'sort', payload: 'up'})
-        ) // в алфавитном порядке a.name > b.name
+        dispatchPeople({type: 'sort', payload: 'up'}) // в алфавитном порядке a.name > b.name
         setCurrentSort('up')
     }
 
     const sortDown = () => {
-        setPeople(
-            homeWorkReducer(initialPeople, {type: 'sort', payload: 'down'})
-        ) // в обратном порядке a.name < b.name}
+        dispatchPeople({type: 'sort', payload: 'down'}) // в обратном порядке a.name < b.name}
         setCurrentSort('down')
     }
     const check18 = () => {
-        setPeople(
-            homeWorkReducer(initialPeople, {type: 'check', payload: 18})
-        ) // совершеннолетние
+        dispatchPeople({type: 'check', payload: 18})// совершеннолетние
         setCurrentSort('18')
     }
 
@@ -85,7 +79,7 @@ const HW8 = () => {
                     <table id={'hw8-users'} className={s.users}>
                         <thead className={s.thead}>
                         <tr>
-                            <td className={s.nameCol}>Name</td>
+                            <td className={s.nameCol}>Full name</td>
                             <td className={s.ageCol}>Age</td>
                         </tr>
                         </thead>
