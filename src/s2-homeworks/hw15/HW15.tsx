@@ -20,13 +20,11 @@ type TechType = {
     tech: string
     developer: string
 }
-
 type ParamsType = {
     sort: string
     page: number
     count: number
 }
-
 const getTechs = (params: ParamsType) => {
     return axios
         .get<{ techs: TechType[], totalCount: number }>(
@@ -56,17 +54,24 @@ const HW15 = () => {
                 // сохранить пришедшие данные
 
                 //
+                res?.data.techs && setTechs([...res.data.techs])
+                setLoading(false)
             })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
 
-        // setPage(
-        // setCount(
+        setPage(newPage)
+        setCount(newCount)
 
-        // sendQuery(
-        // setSearchParams(
+        const pageQuery: {page?:string} =  newPage === 1 ? {} : {page: `${newPage}`}
+        const countQuery: {count?:string} =  newCount === 4 ? {}:{count: `${newCount}`}
+        const {count, page, ...rest} = Object.fromEntries(searchParams)
+        const query = {...pageQuery, ...countQuery, ...rest};
+
+        sendQuery(query)
+        setSearchParams(query)
 
         //
     }
@@ -74,17 +79,21 @@ const HW15 = () => {
     const onChangeSort = (newSort: string) => {
         // делает студент
 
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
+        setSort(newSort)
+        setPage(1) // при сортировке сбрасывать на 1 страницу
 
-        // sendQuery(
+        const sortQuery: {sort?:string} = newSort === "" ? {} : {sort: newSort}
+        const {sort, page, ...rest} = Object.fromEntries(searchParams)
+        const query = {...sortQuery,...rest};
+        sendQuery(query)
         // setSearchParams(
-
+        setSearchParams(query)
         //
     }
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
+        console.log("searchParams",searchParams)
         sendQuery({page: params.page, count: params.count})
         setPage(+params.page || 1)
         setCount(+params.count || 4)

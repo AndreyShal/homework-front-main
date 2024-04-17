@@ -42,7 +42,8 @@ const SuperDebouncedInput: React.FC<SuperDebouncedInputPropsType> = (
                 onDebouncedChange(value)
                 setTimerId(undefined)
             },1500)
-            setTimerId(Number(newTimerId))
+            // setTimerId(Number(newTimerId))
+            setTimerId(+newTimerId)
 
             //
         } else {
